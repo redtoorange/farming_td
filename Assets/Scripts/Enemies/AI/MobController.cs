@@ -10,14 +10,18 @@ namespace Enemies.AI
         {
             Mob.OnMobSpawned += HandleMobSpawned;
             Mob.OnMobDestroyed += HandleMobDestroyed;
+            
             MobMover.OnNeedWaypoint += HandleOnNeedWaypoint;
+            MobMover2D.OnNeedWaypoint += HandleOnNeedWaypoint;
         }
 
         private void OnDisable()
         {
             Mob.OnMobSpawned -= HandleMobSpawned;
             Mob.OnMobDestroyed -= HandleMobDestroyed;
+            
             MobMover.OnNeedWaypoint -= HandleOnNeedWaypoint;
+            MobMover2D.OnNeedWaypoint -= HandleOnNeedWaypoint;
         }
 
         private void HandleMobSpawned(Mob newMob)
@@ -30,6 +34,11 @@ namespace Enemies.AI
         }
 
         private void HandleOnNeedWaypoint(MobMover mover)
+        {
+            mover.SetWaypoint(wayPointController.GetNextWaypoint(mover.GetWayPoint()));
+        }
+        
+        private void HandleOnNeedWaypoint(MobMover2D mover)
         {
             mover.SetWaypoint(wayPointController.GetNextWaypoint(mover.GetWayPoint()));
         }

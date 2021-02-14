@@ -16,7 +16,7 @@ TagManager:
   - Projectile
   - Tower
   - Tile
-  - 
+  - Ground
   - 
   - 
   - 
@@ -41,4 +41,19 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Ground
+    uniqueID: 2247851657
+    locked: 0
+  - name: TowerBase
+    uniqueID: 767929299
+    locked: 0
+  - name: TowerTop
+    uniqueID: 1988628933
+    locked: 0
+  - name: Enemy
+    uniqueID: 1089102145
+    locked: 0
+  - name: Projectile
+    uniqueID: 396957767
     locked: 0

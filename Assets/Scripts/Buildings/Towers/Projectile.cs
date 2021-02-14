@@ -6,7 +6,7 @@ namespace Buildings.Towers
     public class Projectile : MonoBehaviour
     {
         [SerializeField] private float speed = 10.0f;
-        [SerializeField] private Rigidbody rigidbody = null;
+        [SerializeField] private Rigidbody2D rigidbody = null;
         [SerializeField] private int damage = 10;
 
         private bool updateThisFrame = true;
@@ -49,7 +49,7 @@ namespace Buildings.Towers
             Destroy(gameObject);
         }
 
-        private void OnTriggerEnter(Collider other)
+        private void OnTriggerEnter2D(Collider2D other)
         {
             Health health = other.GetComponent<Health>();
             if (health)

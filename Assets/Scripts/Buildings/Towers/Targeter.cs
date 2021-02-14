@@ -25,7 +25,7 @@ namespace Buildings.Towers
             if (currentTarget != null)
             {
                 // Verify Still In Range
-                if (Vector3.Distance(transform.position, currentTarget.transform.position) > range)
+                if (Vector2.Distance(transform.position, currentTarget.transform.position) > range)
                 {
                     currentTarget = null;
                 }
@@ -40,16 +40,16 @@ namespace Buildings.Towers
 
         private void FindTarget()
         {
-            RaycastHit[] hits = Physics.SphereCastAll(transform.position, range, Vector3.forward, 0, targetMask);
+            RaycastHit2D[] hits = Physics2D.CircleCastAll(transform.position, range, Vector2.one, 0, targetMask);
             if (hits.Length > 0)
             {
                 // Find closest
-                Vector3 pos = transform.position;
+                Vector2 pos = transform.position;
                 float min = Mathf.Infinity;
                 int minIndex = -1;
                 for (int i = 0; i < hits.Length; i++)
                 {
-                    if (Vector3.SqrMagnitude(hits[i].point - pos) < min)
+                    if (Vector2.SqrMagnitude(hits[i].point - pos) < min)
                     {
                         minIndex = i;
                     }
