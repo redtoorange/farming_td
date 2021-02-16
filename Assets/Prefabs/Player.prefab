@@ -57,7 +57,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gridController: {fileID: 0}
-  towerPrefab: {fileID: 8683888443305505328, guid: d333494162071c047b44cac9049c0020, type: 3}
+  towerPrefab: {fileID: 8757666215159863816, guid: dfc67c0cf44d39247a832ce5afd6d3a9, type: 3}
   layerMask:
     serializedVersion: 2
     m_Bits: 512

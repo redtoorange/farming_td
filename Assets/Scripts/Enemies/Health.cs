@@ -6,7 +6,7 @@ namespace Enemies
     public class Health : MonoBehaviour
     {
         public event Action<Health> OnDie;
-        public event Action<float> OnTakeDamage;
+        public event Action OnTakeDamage;
         
         [SerializeField] private int maxHealth = 100;
 
@@ -20,22 +20,17 @@ namespace Enemies
         public void DealDamage(int amount)
         {
             currentHealth -= amount;
-            OnTakeDamage?.Invoke(GetHealthPercent());
+            OnTakeDamage?.Invoke();
 
             if (currentHealth <= 0)
             {
-                Destroy(gameObject);
+                OnDie?.Invoke(this);
             }
         }
 
         public float GetHealthPercent()
         {
             return currentHealth / (float) maxHealth;
-        }
-
-        private void OnDestroy()
-        {
-            OnDie?.Invoke(this);
         }
     }
 }

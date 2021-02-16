@@ -9,10 +9,11 @@ namespace UI
         [SerializeField] private Health health = null;
         [SerializeField] private Gradient healthGradient = new Gradient();
         [SerializeField] private Image healthBarImage = null;
+        [SerializeField] private GameObject healthBarContainer = null;
 
         private void Start()
         {
-            UpdateHealthBar(health.GetHealthPercent());
+            UpdateHealthBar();
         }
 
         private void OnEnable()
@@ -25,15 +26,18 @@ namespace UI
             health.OnTakeDamage -= HandleOnDamage;
         }
 
-        private void HandleOnDamage(float percentRemaining)
+        private void HandleOnDamage()
         {
-            UpdateHealthBar(percentRemaining);
+            UpdateHealthBar();
         }
 
-        private void UpdateHealthBar(float percentRemaining)
+        private void UpdateHealthBar()
         {
-            healthBarImage.fillAmount = percentRemaining;
-            healthBarImage.color = healthGradient.Evaluate(percentRemaining);
+            float fillPercent = health.GetHealthPercent();
+            
+            healthBarImage.color = healthGradient.Evaluate(fillPercent);
+            healthBarImage.fillAmount = fillPercent;
+            healthBarContainer.SetActive(fillPercent  > 0 && fillPercent < 1);
         }
     }
 }

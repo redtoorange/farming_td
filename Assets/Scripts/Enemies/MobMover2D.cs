@@ -9,10 +9,22 @@ namespace Enemies
     {
         public static event Action<MobMover2D> OnNeedWaypoint;
 
+        [SerializeField] private Health health = null;
         [SerializeField] private AStarAgent aStarAgent = null;
         [SerializeField] private float cutoffDistance = 0.25f;
 
         private WayPoint currentWaypoint = null;
+        private bool shouldMove = true;
+
+        private void Start()
+        {
+            health.OnDie += HandleOnDeath;
+        }
+
+        private void OnDestroy()
+        {
+            health.OnDie -= HandleOnDeath;
+        }
 
         public WayPoint GetWayPoint()
         {
@@ -27,10 +39,16 @@ namespace Enemies
 
         private void Update()
         {
-            if (currentWaypoint == null || aStarAgent.GetRemainingDistance() < cutoffDistance)
+            if (shouldMove && (currentWaypoint == null || aStarAgent.GetRemainingDistance() < cutoffDistance))
             {
                 OnNeedWaypoint?.Invoke(this);
             }
+        }
+
+        private void HandleOnDeath(Health health)
+        {
+            shouldMove = false;
+            aStarAgent.Reset();
         }
     }
 }

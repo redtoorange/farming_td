@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Stone
+  m_Name: Roof
   m_Shader: {fileID: 4800000, guid: 7633a2fd8a3bed44791c9e952ff86e5d, type: 3}
   m_ShaderKeywords: _FRESNELHIGHLIGHTS_ON _MK_ARTISTIC_PROJECTION_SCREEN_SPACE _MK_DETAIL_BLEND_MIX
     _MK_ENVIRONMENT_REFLECTIONS_AMBIENT _MK_FRESNEL_HIGHLIGHTS _MK_LIGHT_CEL _MK_OUTLINE_HULL_CLIP
@@ -224,7 +224,7 @@ Material:
     - _GlossyReflections: 1
     - _GoochRampIntensity: 0.5
     - _HatchingMapScale: 1
-    - _Initialized: 1
+    - _Initialized: 0
     - _InputTab: 1
     - _Iridescence: 0
     - _IridescenceSize: 1
@@ -293,9 +293,9 @@ Material:
     - _ZTest: 4
     - _ZWrite: 1
     m_Colors:
-    - _AlbedoColor: {r: 0.37332672, g: 0.37332672, b: 0.37332672, a: 1}
-    - _BaseColor: {r: 0.37332675, g: 0.37332675, b: 0.37332675, a: 1}
-    - _Color: {r: 0.11493563, g: 0.11493563, b: 0.11493563, a: 1}
+    - _AlbedoColor: {r: 0.9063317, g: 0.22895402, b: 0.2174136, a: 1}
+    - _BaseColor: {r: 0.9063317, g: 0.22895405, b: 0.21741363, a: 1}
+    - _Color: {r: 0.8000001, g: 0.04285382, b: 0.038792115, a: 1}
     - _DetailColor: {r: 1, g: 1, b: 1, a: 1}
     - _DissolveBorderColor: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
@@ -311,7 +311,7 @@ Material:
     - _SpecularColor: {r: 0.19999993, g: 0.19999993, b: 0.19999993, a: 1}
     - _VertexAnimationFrequency: {r: 2.5, g: 2.5, b: 2.5, a: 1}
   m_BuildTextureStacks: []
---- !u!114 &4525247824436230420
+--- !u!114 &5985330290274809596
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}

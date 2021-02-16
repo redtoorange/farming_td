@@ -65,7 +65,6 @@ namespace Pathfinding
 
         public void SetDestination(Vector2 worldPositionDestination)
         {
-            Debug.Log("Setting Destination: " + worldPositionDestination);
             finalDestination = worldPositionDestination;
             CalculatePath();
         }
@@ -82,7 +81,6 @@ namespace Pathfinding
 
         private void CalculatePath()
         {
-            Debug.Log("Calculating Path");
             currentPath = null;
             pathIndex = -1;
 
@@ -96,13 +94,17 @@ namespace Pathfinding
 
             if (currentPath != null && currentPath.Count > 0)
             {
-                Debug.Log("Path Found");
                 lerpedAmount = 0.0f;
                 pathIndex = 0;
                 branchStartPosition = transform.position;
                 branchDestination = currentPath[pathIndex].GetPositionWorld();
                 pointDistance = Vector2.Distance(branchStartPosition, branchDestination);
             }
+        }
+
+        public void Reset()
+        {
+            currentPath = null;
         }
     }
 }

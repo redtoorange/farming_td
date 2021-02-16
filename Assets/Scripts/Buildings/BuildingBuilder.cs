@@ -21,10 +21,12 @@ namespace Buildings
         {
             if (Mouse.current.leftButton.wasReleasedThisFrame)
             {
-                Ray ray = mainCamera.ScreenPointToRay(Mouse.current.position.ReadValue());
-                if (Physics.Raycast(ray, out RaycastHit hitInfo, Mathf.Infinity, layerMask))
+                Vector2 worldPoint = mainCamera.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+                RaycastHit2D[] hits = Physics2D.RaycastAll(worldPoint, Vector2.one, 0.0f, layerMask);
+                
+                if (hits.Length > 0)
                 {
-                    BuildableTile tile = hitInfo.collider.GetComponent<BuildableTile>();
+                    BuildableTile tile = hits[0].collider.GetComponent<BuildableTile>();
                     if (tile && !tile.IsOccupied())
                     {
                         SpawnTower(tile);
