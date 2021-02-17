@@ -7,7 +7,6 @@ namespace Buildings
 {
     public class BuildingBuilder : MonoBehaviour
     {
-        [SerializeField] private BuildableGridController gridController = null;
         [SerializeField] private Tower towerPrefab = null;
         [SerializeField] private LayerMask layerMask = new LayerMask();
 
@@ -16,7 +15,6 @@ namespace Buildings
         // Every instance of BuildingBuilder will need a GridController
         private void Start()
         {
-            gridController = FindObjectOfType<BuildableGridController>();
             mainCamera = Camera.main;
         }
 

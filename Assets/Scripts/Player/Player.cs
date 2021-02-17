@@ -1,7 +1,6 @@
-﻿using Mirror;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace Network
+namespace Player
 {
     public class Player : MonoBehaviour
     {
