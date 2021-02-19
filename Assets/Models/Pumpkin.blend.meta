@@ -3,7 +3,17 @@ guid: 30e1825961d21cf4c87395ad48a2d901
 ModelImporter:
   serializedVersion: 21100
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Pumpkin
+    second: {fileID: 2100000, guid: 3c1803e701342804fa27ac4202d7e865, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Pumpkin.001
+    second: {fileID: 2100000, guid: 05c2fe1edfe693b4c89139143d66af6d, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
