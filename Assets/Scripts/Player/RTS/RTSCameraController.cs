@@ -39,7 +39,7 @@ namespace Player.RTS
             {
                 float speed = Time.deltaTime * (!sprinting ? cameraMoveSpeed : cameraSprintSpeed);
 
-                Vector3 translation = new Vector3(value.x, 0, value.y);
+                Vector3 translation = new Vector3(-value.x, 0, -value.y);
                 transform.Translate(translation * speed);
             }
 
