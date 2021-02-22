@@ -17,14 +17,24 @@ namespace Buildings.Towers
             return damage;
         }
 
-        public void SetTarget(Targetable target)
+        public void SetTarget(Targetable newTarget)
         {
-            this.target = target;
-            Vector2 moveDirection = transform.position - target.GetAimPoint().position;
-            if (moveDirection != Vector2.zero)
+            if (newTarget != null)
             {
-                float angle = Mathf.Atan2(moveDirection.y, moveDirection.x) * Mathf.Rad2Deg;
-                transform.rotation = Quaternion.AngleAxis(angle, Vector2.right);
+                target = newTarget;
+                target.OnTargetDestroyed += HandleOnTargetDestroyed;
+
+                Vector2 moveDirection = transform.position - newTarget.GetAimPoint().position;
+                if (moveDirection != Vector2.zero)
+                {
+                    float angle = Mathf.Atan2(moveDirection.y, moveDirection.x) * Mathf.Rad2Deg;
+                    transform.rotation = Quaternion.AngleAxis(angle, Vector2.right);
+                }
+            }
+            else
+            {
+                Debug.LogError("Projectile spawned without a target");
+                Destroy(gameObject);
             }
         }
 
@@ -40,8 +50,8 @@ namespace Buildings.Towers
                         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
                         transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
                     }
-                    
-                    
+
+
                     rigidbody.velocity = dir.normalized * speed;
                     updateThisFrame = false;
                 }
@@ -52,6 +62,12 @@ namespace Buildings.Towers
             }
         }
 
+        private void HandleOnTargetDestroyed()
+        {
+            target = null;
+            DestroySelf();
+        }
+
         private void Start()
         {
             Invoke(nameof(DestroySelf), 1.5f);
@@ -59,6 +75,12 @@ namespace Buildings.Towers
 
         private void DestroySelf()
         {
+            // Remove self from the target's event
+            if (target != null)
+            {
+                target.OnTargetDestroyed -= HandleOnTargetDestroyed;
+            }
+
             Destroy(gameObject);
         }
 

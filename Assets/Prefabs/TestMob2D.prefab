@@ -67,7 +67,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db722a01f9544016b318958892d1e517, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 30
+  maxHealth: 50
 --- !u!114 &-844175333479993098
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -81,6 +81,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   aimPoint: {fileID: 1242872767709285711}
+  health: {fileID: -6595351761749728185}
+  collider2D: {fileID: 1663139784099616740}
 --- !u!114 &6985913753724308220
 MonoBehaviour:
   m_ObjectHideFlags: 0

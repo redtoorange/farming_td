@@ -30,7 +30,6 @@ namespace Enemies.AI
 
         private void HandleMobDestroyed(Mob destroyedMob)
         {
-            Debug.Log("Mob Destroyed");
         }
 
         private void HandleOnNeedWaypoint(MobMover mover)

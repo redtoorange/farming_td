@@ -20,13 +20,15 @@ namespace Buildings.Towers
             return currentTarget;
         }
 
-        private void Update()
+        private void FixedUpdate()
         {
             if (currentTarget != null)
             {
                 // Verify Still In Range
-                if (Vector2.Distance(transform.position, currentTarget.transform.position) > range)
+                if (Mathf.Abs(Vector2.Distance(transform.position, currentTarget.transform.position)) > range)
                 {
+                    Debug.Log("Target out of range");
+                    currentTarget.OnTargetDestroyed -= HandleOnTargetDestroyed;
                     currentTarget = null;
                 }
             }
@@ -49,8 +51,10 @@ namespace Buildings.Towers
                 int minIndex = -1;
                 for (int i = 0; i < hits.Length; i++)
                 {
-                    if (Vector2.SqrMagnitude(hits[i].point - pos) < min)
+                    float dist = Vector2.SqrMagnitude(hits[i].point - pos);
+                    if (dist < min)
                     {
+                        min = dist;
                         minIndex = i;
                     }
                 }
@@ -58,8 +62,15 @@ namespace Buildings.Towers
                 if (minIndex >= 0)
                 {
                     currentTarget = hits[minIndex].collider.GetComponent<Targetable>();
+                    currentTarget.OnTargetDestroyed += HandleOnTargetDestroyed;
                 }
             }
+        }
+
+        private void HandleOnTargetDestroyed()
+        {
+            currentTarget.OnTargetDestroyed -= HandleOnTargetDestroyed;
+            currentTarget = null;
         }
 
         private void OnDrawGizmosSelected()

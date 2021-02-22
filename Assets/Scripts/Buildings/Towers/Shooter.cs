@@ -20,7 +20,7 @@ namespace Buildings.Towers
             coolDown = 1.0f / fireRate;
         }
 
-        private void Update()
+        private void LateUpdate()
         {
             if (currentCooldown > 0.0f)
             {
