@@ -1,3 +1,4 @@
+using System;
 using Input;
 using UnityEngine;
 
@@ -5,7 +6,7 @@ namespace Player.FPS
 {
     public class FPSPlayerController : MonoBehaviour
     {
-        [SerializeField] private Camera playerCamera;
+        [SerializeField] private Transform playerCamera;
         [SerializeField] private CharacterController characterController;
 
         [SerializeField] private float walkingSpeed = 7.5f;
@@ -28,8 +29,19 @@ namespace Player.FPS
             actions.FPS.Sprint.canceled += context => sprinting = false;
             actions.Enable();
 
+            
+        }
+
+        private void OnEnable()
+        {
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
+        }
+
+        private void OnDisable()
+        {
+            Cursor.lockState = CursorLockMode.Confined;
+            Cursor.visible = true;
         }
 
         private void Update()

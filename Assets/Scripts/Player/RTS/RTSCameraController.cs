@@ -1,11 +1,10 @@
-﻿using System;
-using Input;
+﻿using Input;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace Cameras
+namespace Player.RTS
 {
-    public class CameraController : MonoBehaviour
+    public class RTSCameraController : MonoBehaviour
     {
         [SerializeField] private Transform cameraTransform = null;
 
