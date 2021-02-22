@@ -1,4 +1,5 @@
-﻿using Input;
+﻿using Cinemachine;
+using Input;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -6,7 +7,7 @@ namespace Player.RTS
 {
     public class RTSCameraController : MonoBehaviour
     {
-        [SerializeField] private Transform cameraTransform = null;
+        [SerializeField] private CinemachineVirtualCamera virtualCamera = null;
 
         [SerializeField] private float cameraMoveSpeed = 1.0f;
         [SerializeField] private float cameraSprintSpeed = 2.0f;
@@ -27,8 +28,6 @@ namespace Player.RTS
             {
                 sprinting = false;
             };
-
-            cameraTransform.LookAt(transform);
         }
 
         private void LateUpdate()
@@ -39,8 +38,7 @@ namespace Player.RTS
             {
                 float speed = Time.deltaTime * (!sprinting ? cameraMoveSpeed : cameraSprintSpeed);
 
-                Vector3 translation = new Vector3(-value.x, 0, -value.y);
-                transform.Translate(translation * speed);
+                virtualCamera.transform.Translate(new Vector2(value.x, value.y) * speed);
             }
 
             // Detect zooming
@@ -48,7 +46,8 @@ namespace Player.RTS
             if (scroll * scroll > 0)
             {
                 Vector3 zoom = new Vector3(0, 0, scroll * cameraZoomSpeed * Time.deltaTime);
-                cameraTransform.Translate(zoom);
+                // virtualCamera
+                // cameraTransform.Translate(zoom);
             }
         }
     }
